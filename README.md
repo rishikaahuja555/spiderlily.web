@@ -89,17 +89,18 @@ Interactive Flower
 
 ### Run Locally
 
+## Run Locally
+
 Clone the repository:
 
 ```bash
-git clone https://github.com/rishikaahuja555/spiderlily.web.git
+git clone https://github.com/rishikaahuja555/BloomSense.git
 ```
 
-Navigate to the web application:
+Navigate to the project:
 
 ```bash
-cd spiderlily.web
-cd spiderlily-web
+cd BloomSense
 ```
 
 Start a local server:
@@ -117,6 +118,7 @@ http://localhost:8642
 Allow camera access when prompted.
 
 The application should be served through `localhost` or HTTPS because webcam access requires a secure browser context.
+
 
 ## Project Structure
 
