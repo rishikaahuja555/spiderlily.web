@@ -1,101 +1,163 @@
-# Spiderlily
+# BloomSense
 
-An interactive spider lily that grows and blooms in response to your hands, using
-MediaPipe hand tracking. It comes in two forms:
+### Interactive 3D Garden Using Real-Time Hand Tracking
 
-- **Web version** (`spiderlily-web/`) — a self-contained Three.js + MediaPipe
-  visualiser that runs in the browser. This is the 3D visualiser.
-- **TouchDesigner version** (`InteractiveFlower.43.toe`) — the original piece
-  built in TouchDesigner.
+BloomSense is an interactive 3D garden that uses real-time hand tracking to let users interact with flowers through simple hand gestures.
 
-Both react to the same gesture idea: one hand grows the plant, the other blooms
-the flowers.
+The project uses a webcam to detect hand movements and translates specific gestures into visual changes within a Three.js environment.
 
----
+## Features
 
-## Get the code
+* Real-time hand tracking using MediaPipe Hands
+* Interactive 3D flower environment
+* Three gesture-based interactions
+* Multiple flower options
+* Real-time interaction mode displayed on screen
+* Webcam-based interaction
+* 3D rendering using Three.js
+* Browser-based application
 
-Clone the repo:
+## Gesture Interaction
 
-```bash
-git clone https://github.com/cupidbity/spiderlily.git
-cd spiderlily
+BloomSense currently supports three primary hand gestures:
+
+| Gesture     | Interaction              |
+| ----------- | ------------------------ |
+| Open hand   | Bloom                    |
+| Closed hand | Close                    |
+| Pinch       | Interact with the flower |
+
+The current interaction mode is displayed on the screen while the user interacts with the garden.
+
+## Flower Collection
+
+The garden supports multiple flower types:
+
+* Rose
+* Sunflower
+* Orchid
+
+Users can switch between the available flowers and interact with them using the supported hand gestures.
+
+## How It Works
+
+BloomSense uses the webcam to capture the user's hand movements. MediaPipe Hands detects hand landmarks, and JavaScript interprets the detected gestures.
+
+The gesture state is then used to control the visual state of the selected flower within the Three.js environment.
+
+```text
+Webcam
+   |
+   v
+MediaPipe Hands
+   |
+   v
+Hand Landmark Detection
+   |
+   v
+Gesture Recognition
+   |
+   v
+JavaScript
+   |
+   v
+Three.js
+   |
+   v
+Interactive Flower
 ```
 
-That's all you need for the **web version**. For the **TouchDesigner version** you
-also need to add the MediaPipe engine — see that section below.
+## Technology Stack
 
----
+| Technology      | Purpose                       |
+| --------------- | ----------------------------- |
+| HTML5           | Application structure         |
+| CSS3            | Interface and styling         |
+| JavaScript      | Gesture logic and interaction |
+| Three.js        | 3D rendering                  |
+| MediaPipe Hands | Real-time hand tracking       |
+| Web Camera      | Hand input                    |
+| GitHub          | Version control               |
 
-## Web version (3D visualiser)
+## Getting Started
 
-A single self-contained `spiderlily-web/index.html`. It pulls Three.js and
-MediaPipe from a CDN, so there's no build step — but the webcam and hand tracking
-require the page to be served over `http://localhost` or `https`, not opened as a
-`file://` path.
+### Prerequisites
 
-### Open it
+* A modern web browser
+* Webcam
+* Python 3.x
+
+### Run Locally
+
+Clone the repository:
 
 ```bash
+git clone https://github.com/rishikaahuja555/spiderlily.web.git
+```
+
+Navigate to the web application:
+
+```bash
+cd spiderlily.web
 cd spiderlily-web
-python3 -m http.server 8642
 ```
 
-Then open **http://localhost:8642** in Chrome or Safari and **allow the camera**
-when prompted. (Any static server works — `python3 -m http.server` is just the
-simplest.)
+Start a local server:
 
-### Use it
+```bash
+python -m http.server 8642
+```
 
-- **Left hand** — pinch out (spread thumb + index) to **grow** the plant
-- **Right hand** — pinch out to **bloom** the flowers
-- The webcam shows in the bottom-right corner with a live tracking overlay; the
-  flowers render over the full screen.
-- Press **`D`** to toggle a debug auto-bloom cycle (no hands needed), **`H`** to
-  hide the HUD, and drag / scroll to orbit and zoom the camera.
+Open the application in your browser:
 
-Full interaction details, keys, and tweakable parameters are in
-[`spiderlily-web/README.md`](spiderlily-web/README.md).
+```text
+http://localhost:8642
+```
 
----
+Allow camera access when prompted.
 
-## TouchDesigner version
+The application should be served through `localhost` or HTTPS because webcam access requires a secure browser context.
 
-`InteractiveFlower.43.toe` is the TouchDesigner project file.
+## Project Structure
 
-### Open it
+```text
+BloomSense/
+│
+├── spiderlily-web/
+│   └── index.html
+│
+└── README.md
+```
 
-1. Install **TouchDesigner** (free non-commercial license) from
-   [derivative.ca](https://derivative.ca/download).
-2. Get the **MediaPipe engine** (see below) into the `toxes/` folder.
-3. Double-click **`InteractiveFlower.43.toe`**, or launch TouchDesigner and use
-   **File → Open** to select it.
-4. Press the play/perform controls to run it; a connected webcam drives the hand
-   tracking.
+## Interaction Flow
 
-### MediaPipe dependency
+```text
+Select Flower
+     |
+     v
+Start Camera
+     |
+     v
+Detect Hand
+     |
+     v
+Recognize Gesture
+     |
+     v
+Update Interaction Mode
+     |
+     v
+Change Flower State
+```
 
-The TouchDesigner version needs **everything in the `toxes/` folder**. The tracking
-toxes come with the repo; the one you have to add is the large **MediaPipe.tox**
-engine:
+## Purpose
 
-Download **[MediaPipe.tox](https://github.com/cupidbity/spiderlily/releases/download/assets/MediaPipe.tox)**
-and put it in the **`toxes/`** folder alongside the others. Once all the toxes are
-in `toxes/`, the hand tracking will work.
+BloomSense explores the use of computer vision and 3D graphics to create a simple, natural form of interaction between a user and a virtual environment.
 
-`MediaPipe.tox` is the free **MediaPipe for TouchDesigner** plugin:
-https://github.com/torinmb/mediapipe-touchdesigner
+Instead of relying only on traditional mouse and keyboard controls, the project allows users to interact with a digital flower using their hands.
 
----
+## Author
 
-## Which one should I run?
+**Rishika Ahuja**
 
-- Want to try it instantly in a browser with just a webcam? → **Web version.**
-- Want the full TouchDesigner piece to edit or perform? → **TouchDesigner version.**
-
----
-
-## Reference
-
-Tutorial used as reference while building this:
-https://www.youtube.com/watch?v=KGALeCnTTbg&t=32s
+B.Tech Computer Science and Engineering
