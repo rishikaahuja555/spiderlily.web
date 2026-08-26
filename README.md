@@ -118,7 +118,11 @@ http://localhost:8642
 Allow camera access when prompted.
 
 The application should be served through `localhost` or HTTPS because webcam access requires a secure browser context.
+# BloomSense
 
+### Interactive 3D Garden Using Real-Time Hand Tracking
+
+[Live Demo](https://rishikaahuja555.github.io/BloomSense/)
 
 ## Project Structure
 
